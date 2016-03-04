@@ -21,7 +21,7 @@ var SketchNavigatorNavigate = function(context) {
 
   // Get the default index.
   var defaultSelectedArtboardIndex = SketchConfig.get(selectedArtboardkey)
-  if (defaultSelectedArtboardIndex === nil) {
+  if (defaultSelectedArtboardIndex === nil || defaultSelectedArtboardIndex > comboxBoxValues.length) {
     defaultSelectedArtboardIndex = 0
   }
 
