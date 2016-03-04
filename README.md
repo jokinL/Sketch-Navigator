@@ -1,6 +1,10 @@
 # Sketch Navigator
 Quick navigation for Sketch
 
+![Preview](http://i.imgur.com/Xu8vAKD.gif)
+
+Need a wireframing template? [See Garret's Wireframing template for Sketch](https://www.chapterthree.com/blog/wireframing-template-sketch)
+
 # Installation
 
 1. Download and extract the plugin.
