@@ -7,6 +7,12 @@ var selectedArtboardkey = "SketchNavigatordefaultSelectedArtboardIndex"
 var SketchNavigatorNavigate = function(context) {
   var document = context.document
 
+  // Show an error message if document has no artboards.
+  if (!document.hasArtboards()) {
+    [document showMessage:"No artboards found."]
+    return
+  }
+
   // Build a tree of pages and artboards from the document.
   var tree = SketchNavigator.getTreeFromDocument(document)
 
