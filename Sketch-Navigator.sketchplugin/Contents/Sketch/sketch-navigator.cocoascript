@@ -1,7 +1,7 @@
-@import './libraries/SketchConfig.cocoascript';
+@import './libraries/SketchConfig.cocoascript'
 
 // Default key for NSUserDefaults.
-var key = "SketchNavigatordefaultSelectedArtboardIndex";
+var selectedArtboardkey = "SketchNavigatordefaultSelectedArtboardIndex"
 
 // Callback for navigate action.
 var SketchNavigatorNavigate = function(context) {
@@ -13,27 +13,28 @@ var SketchNavigatorNavigate = function(context) {
   // Get combox values as "page: artboard".
   var comboxBoxValues = SketchNavigator.buildComboxBoxValuesFromTree(tree)
 
-  // Get the default Sass variables.
-  var defaultSelectedArtboardIndex = SketchConfig.get(key);
-  if (defaultSelectedArtboardIndex == nil) {
-    defaultSelectedArtboardIndex = 0;
+  // Get the default index.
+  var defaultSelectedArtboardIndex = SketchConfig.get(selectedArtboardkey)
+  if (defaultSelectedArtboardIndex === nil) {
+    defaultSelectedArtboardIndex = 0
   }
 
   // Show the selector and get selected artboard.
   var selectedComboxBoxValue = SketchNavigator.showArtboardSelector("Navigate", "Select an artboard", comboxBoxValues, defaultSelectedArtboardIndex)
   if (selectedComboxBoxValue !== null) {
-    var selectedIndex = selectedComboxBoxValue.indexOfSelectedItem();
+    var selectedIndex = selectedComboxBoxValue.indexOfSelectedItem()
 
     if (selectedIndex >= 0) {
       // Set the default index.
       defaultSelectedArtboardIndex = selectedComboxBoxValue.indexOfSelectedItem()
 
-      // Save the variables to defaults.
-      SketchConfig.set(key, defaultSelectedArtboardIndex);
+      // Save to defaults.
+      SketchConfig.set(selectedArtboardkey, defaultSelectedArtboardIndex);
 
       // Navigate to target.
       var flattenedTree = SketchNavigator.flattenTree(tree)
-      var target = flattenedTree[selectedComboxBoxValue.objectValueOfSelectedItem()]
+      var targetValue = selectedComboxBoxValue.objectValueOfSelectedItem()
+      var target = flattenedTree[targetValue]
       SketchNavigator.navigateToArtboardOnPageInDocument(target["artboard"], target["page"], document)
     }
   }
@@ -112,25 +113,25 @@ var SketchNavigator = {
 
   // Helper to display an alert window with a comboxbos.
   showArtboardSelector: function(title, description, comboxBoxItems, selectedComboxBoxIndex) {
-    var alert = COSAlertWindow.new();
-    alert.setIcon(nil);
-    alert.addButtonWithTitle('Go');
-    alert.addButtonWithTitle('Cancel');
+    var alert = COSAlertWindow.new()
+    alert.setIcon(nil)
+    alert.addButtonWithTitle('Go')
+    alert.addButtonWithTitle('Cancel')
 
-    alert.setMessageText(title);
-    alert.setInformativeText(description);
+    alert.setMessageText(title)
+    alert.setInformativeText(description)
 
     var comboxBoxView = [[NSComboBox alloc] initWithFrame:NSMakeRect(-10, -50, 280, 28)]
     comboxBoxView.completes = true
     [comboxBoxView addItemsWithObjectValues:comboxBoxItems]
     [comboxBoxView selectItemAtIndex:selectedComboxBoxIndex]
-    alert.addAccessoryView(comboxBoxView);
+    alert.addAccessoryView(comboxBoxView)
 
-    var userInput = alert.runModal();
+    var userInput = alert.runModal()
     if(userInput == "1000") {
       return alert.viewAtIndex(0)
     }
 
-    return nil;
+    return nil
   }
 }
