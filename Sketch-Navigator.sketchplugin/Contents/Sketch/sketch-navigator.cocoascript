@@ -127,7 +127,7 @@ var SketchNavigator = {
     alert.setMessageText(title)
     alert.setInformativeText(description)
 
-    var comboxBoxView = [[NSComboBox alloc] initWithFrame:NSMakeRect(-10, -50, 280, 28)]
+    var comboxBoxView = [[NSComboBox alloc] initWithFrame:NSMakeRect(0, 0, 300, 28)]
     comboxBoxView.completes = true
     [comboxBoxView addItemsWithObjectValues:comboxBoxItems]
     [comboxBoxView selectItemAtIndex:selectedComboxBoxIndex]
