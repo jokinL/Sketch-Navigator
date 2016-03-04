@@ -1,5 +1,5 @@
 # Sketch Navigator
-Quick navigation for Sketch
+Quick navigation for Sketch. See a demo: https://www.youtube.com/watch?v=Q1-nnDs73lk
 
 ![Preview](http://i.imgur.com/Xu8vAKD.gif)
 
