@@ -8,7 +8,7 @@ Need a wireframing template? [See Garret's Wireframing template for Sketch](http
 # Installation
 
 1. Download and extract the plugin.
-2. Double click to install.
+2. Double click on **Sketch-Navigator.sketchplugin** to install.
 3. Use `Command + E` to navigate.
 
 # License
