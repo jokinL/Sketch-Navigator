@@ -102,7 +102,7 @@ var SketchNavigator = {
     for (var name in tree) {
       // Add artboards.
       var artboards = tree[name]["artboards"]
-      var loop = [artboards objectEnumerator]
+      var loop = [artboards reverseObjectEnumerator]
       while (artboard = loop.nextObject()) {
         values.push(name + ": " + artboard.name())
       }
