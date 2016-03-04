@@ -54,8 +54,8 @@ var SketchNavigator = {
     var tree = {}
 
     var pages = document.pages()
-    for (var i = 0; i < [pages count]; i++) {
-      var currentPage = [pages objectAtIndex:i]
+    for (var i = 0; i < pages.count(); i++) {
+      var currentPage = pages.objectAtIndex(i)
       tree[currentPage.name()] = {
         page: currentPage,
         artboards: currentPage.artboards()
@@ -74,7 +74,7 @@ var SketchNavigator = {
 
       // Add artboards.
       var artboards = tree[name]["artboards"]
-      var loop = [artboards objectEnumerator]
+      var loop = artboards.objectEnumerator()
       while (artboard = loop.nextObject()) {
         flattenedTree[name + ": " + artboard.name()] = {
           page: page,
@@ -88,18 +88,17 @@ var SketchNavigator = {
 
   // Navigates to an artboard.
   navigateToArtboardOnPageInDocument: function(artboard, page, document) {
-    var padding = 0.050; // Relative to of artboard size, 0.025 = 2.5%
-
     // Create a rect from artboard dimensions to zoom to.
+    var padding = 0.050
     var rect = artboard.rect()
     rect.origin.x -= rect.size.width * padding
     rect.origin.y -= rect.size.height * padding
     rect.size.width *= 1 + padding * 2
     rect.size.height *= 1 + padding * 2
 
-    var view = [document currentView];
-    [document setCurrentPage: page]
-    [view zoomToFitRect:rect];
+    var view = document.currentView()
+    document.setCurrentPage(page)
+    view.zoomToFitRect(rect)
   },
 
   // Builds a comboxBox friendly array from tree.
@@ -108,7 +107,7 @@ var SketchNavigator = {
     for (var name in tree) {
       // Add artboards.
       var artboards = tree[name]["artboards"]
-      var loop = [artboards reverseObjectEnumerator]
+      var loop = artboards.reverseObjectEnumerator()
       while (artboard = loop.nextObject()) {
         values.push(name + ": " + artboard.name())
       }
