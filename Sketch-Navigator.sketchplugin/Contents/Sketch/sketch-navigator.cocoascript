@@ -1,5 +1,7 @@
-// Default to first artboard.
-var defaultSelectedArtboardIndex = 0
+@import './libraries/SketchConfig.cocoascript';
+
+// Default key for NSUserDefaults.
+var key = "SketchNavigatordefaultSelectedArtboardIndex";
 
 // Callback for navigate action.
 var SketchNavigatorNavigate = function(context) {
@@ -11,6 +13,12 @@ var SketchNavigatorNavigate = function(context) {
   // Get combox values as "page: artboard".
   var comboxBoxValues = SketchNavigator.buildComboxBoxValuesFromTree(tree)
 
+  // Get the default Sass variables.
+  var defaultSelectedArtboardIndex = SketchConfig.get(key);
+  if (defaultSelectedArtboardIndex == nil) {
+    defaultSelectedArtboardIndex = 0;
+  }
+
   // Show the selector and get selected artboard.
   var selectedComboxBoxValue = SketchNavigator.showArtboardSelector("Navigate", "Select an artboard", comboxBoxValues, defaultSelectedArtboardIndex)
   if (selectedComboxBoxValue !== null) {
@@ -19,6 +27,9 @@ var SketchNavigatorNavigate = function(context) {
     if (selectedIndex >= 0) {
       // Set the default index.
       defaultSelectedArtboardIndex = selectedComboxBoxValue.indexOfSelectedItem()
+
+      // Save the variables to defaults.
+      SketchConfig.set(key, defaultSelectedArtboardIndex);
 
       // Navigate to target.
       var flattenedTree = SketchNavigator.flattenTree(tree)
@@ -109,7 +120,7 @@ var SketchNavigator = {
     alert.setMessageText(title);
     alert.setInformativeText(description);
 
-    var comboxBoxView = [[NSComboBox alloc] initWithFrame:NSMakeRect(0, 0, 280, 28)]
+    var comboxBoxView = [[NSComboBox alloc] initWithFrame:NSMakeRect(-10, -50, 280, 28)]
     comboxBoxView.completes = true
     [comboxBoxView addItemsWithObjectValues:comboxBoxItems]
     [comboxBoxView selectItemAtIndex:selectedComboxBoxIndex]
