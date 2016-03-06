@@ -65,7 +65,7 @@ var SketchNavigator = {
     return tree
   },
 
-  // Helper to flatten a tree using page: artboard as index.
+  // Helper to flatten a tree using "page: artboard" as index.
   flattenTree: function(tree) {
     var flattenedTree = {}
     for (var name in tree) {
@@ -104,6 +104,7 @@ var SketchNavigator = {
   // Builds a comboxBox friendly array from tree.
   buildComboxBoxValuesFromTree: function(tree) {
     var values = []
+
     for (var name in tree) {
       // Add artboards.
       var artboards = tree[name]["artboards"]
@@ -118,14 +119,15 @@ var SketchNavigator = {
 
   // Helper to display an alert window with a comboxbos.
   showArtboardSelector: function(title, description, comboxBoxItems, selectedComboxBoxIndex) {
+    // Create an alert view.
     var alert = COSAlertWindow.new()
     alert.setIcon(nil)
     alert.addButtonWithTitle('Go')
     alert.addButtonWithTitle('Cancel')
-
     alert.setMessageText(title)
     alert.setInformativeText(description)
 
+    // Create a combobox.
     var comboxBoxView = [[NSComboBox alloc] initWithFrame:NSMakeRect(0, 0, 300, 28)]
     comboxBoxView.completes = true
     [comboxBoxView addItemsWithObjectValues:comboxBoxItems]
