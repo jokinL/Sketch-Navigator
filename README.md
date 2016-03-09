@@ -1,6 +1,10 @@
 # Sketch Navigator
 Artboard navigation (with autocomplete) for Sketch. See a demo: https://www.youtube.com/watch?v=Q1-nnDs73lk
 
+<img src="http://i.imgur.com/PSbP5G7.jpg" width="150" />
+
+# Demo
+
 ![Preview](http://i.imgur.com/Xu8vAKD.gif)
 
 Need a wireframing template? [See Garret's Wireframing template for Sketch](https://www.chapterthree.com/blog/wireframing-template-sketch)
