@@ -15,7 +15,7 @@
     {
       "script" : "sketch-navigator.cocoascript",
       "handler" : "SketchNavigatorNavigate",
-      "shortcut" : "cmd e",
+      "shortcut" : "cmd y",
       "name" : "Navigate",
       "identifier" : "navigate"
     }
